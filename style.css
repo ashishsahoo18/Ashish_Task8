@@ -1,0 +1,320 @@
+/* ── CSS VARIABLES ─────────────────────────── */
+:root {
+  --primary: #29b6f6;
+  --dark: #222;
+  --light-bg: #f0f4f8;
+}
+
+/* ── RESET ─────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: var(--dark);
+}
+
+/* ══════════════════════════════════════════════
+   NAVBAR — Desktop
+══════════════════════════════════════════════ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  position: relative;       /* needed for absolute mobile-menu */
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 15px;
+}
+
+.nav-links li a:hover {
+  color: var(--primary);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-username {
+  background-color: #e0f3ff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ── HAMBURGER BUTTON ──────────────────────── */
+/* Hidden by default on desktop */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--dark);
+  padding: 4px 8px;
+}
+
+/* ── MOBILE SLIDE-IN MENU ──────────────────── */
+/* Always hidden on desktop — only shown via :focus inside mobile media query */
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.mobile-menu ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.mobile-menu ul li a:hover {
+  color: var(--primary);
+}
+
+/* ── SHOW MENU ON BUTTON FOCUS (CSS only trick) ─
+   When .hamburger is focused, its sibling .mobile-menu is shown.
+   The hamburger button and mobile-menu must be siblings inside .navbar.
+   CSS selector: .hamburger:focus ~ .mobile-menu
+────────────────────────────────────────────── */
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger:focus ~ .mobile-menu {
+  display: block;
+}
+
+/* ══════════════════════════════════════════════
+   HERO SECTION — Desktop
+══════════════════════════════════════════════ */
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  min-height: calc(100vh - 70px);
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 480px;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  color: var(--dark);
+}
+
+.hero-text h1 span {
+  color: var(--primary);
+}
+
+.hero-text p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.book-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background-color: #0399d4;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ══════════════════════════════════════════════
+   TABLET — max-width: 768px
+══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 24px;
+  }
+
+  .nav-logo {
+    font-size: 18px;
+  }
+
+  .nav-links li a {
+    font-size: 13px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-username {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .hero {
+    padding: 40px 30px;
+  }
+
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-text p {
+    font-size: 13px;
+  }
+
+  .hero-image img {
+    max-width: 300px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE — max-width: 480px
+   - Hide desktop nav links
+   - Show hamburger icon
+   - Hero switches to column layout
+══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* Hide desktop nav links */
+  .nav-links {
+    display: none;
+  }
+
+  /* Show hamburger icon */
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    padding: 14px 20px;
+    position: relative;
+  }
+
+  .nav-logo {
+    font-size: 20px;
+  }
+
+  /* Mobile menu styles — only active inside mobile breakpoint */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 999;
+    padding-top: 80px;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .mobile-menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+  }
+
+  .mobile-menu ul li a:hover {
+    color: var(--primary);
+  }
+
+  /* Show menu only when hamburger button is focused — CSS only trick */
+  .hamburger:focus ~ .mobile-menu {
+    display: block;
+  }
+
+  /* Hero: column — text on top, image below */
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 20px;
+    min-height: auto;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-text p {
+    font-size: 13px;
+  }
+
+  .book-btn {
+    padding: 14px 28px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-image {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+  }
+}
